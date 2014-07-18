@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140716195154) do
+ActiveRecord::Schema.define(version: 20140718143047) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "comments", force: true do |t|
+    t.string   "content"
     t.integer  "review_id"
     t.integer  "parent_id"
-    t.text     "content"
     t.integer  "commenter_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -27,20 +27,20 @@ ActiveRecord::Schema.define(version: 20140716195154) do
 
   create_table "restaurants", force: true do |t|
     t.string   "name"
-    t.integer  "creator_id"
-    t.string   "street_address"
-    t.string   "city"
     t.string   "state"
+    t.string   "city"
+    t.string   "street_address"
     t.string   "category"
+    t.integer  "creator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "reviews", force: true do |t|
+    t.string   "title"
+    t.string   "content"
     t.integer  "reviewer_id"
     t.integer  "restaurant_id"
-    t.text     "content"
-    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -54,10 +54,10 @@ ActiveRecord::Schema.define(version: 20140716195154) do
   end
 
   create_table "votes", force: true do |t|
-    t.integer  "voter_id"
-    t.integer  "restaurant_id"
-    t.integer  "comment_id"
     t.integer  "review_id"
+    t.integer  "comment_id"
+    t.integer  "restaurant_id"
+    t.integer  "voter_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
